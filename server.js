@@ -41,5 +41,5 @@ app.use('/api/likesforpost',likesforpostroute)
 // app.use('/myanswers',myanswersroute);
 // app.use('/myposts',mypostsroute);
 
-server.listen(port,()=>{
+server.listen(process.env.port||4343,()=>{
  })
