@@ -18,7 +18,7 @@ $(()=>{
            }).then(()=>{
                $("li").click((e)=>{
                    let id=e.target.id;
-                   $.post('./api/notification/seen',{id:id,token:localStorage.getItem('token')})
+                   $.post('../api/notification/seen',{id:id,token:localStorage.getItem('token')})
                    .then(()=>{
                        localStorage.setItem('questionid',id);
                        window.location.replace('./doubtindetail.html');});
@@ -44,7 +44,7 @@ $(()=>{
      }).then(()=>{
         $(".li").click((e)=>{
             let id=e.target.id;
-            $.post('./api/notification/seen',{id:id,token:localStorage.getItem('token')})
+            $.post('../api/notification/seen',{id:id,token:localStorage.getItem('token')})
             .then(()=>{
                 localStorage.setItem('questionid',id);
                 window.location.replace('./doubtindetail.html');});

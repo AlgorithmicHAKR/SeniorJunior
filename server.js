@@ -41,6 +41,5 @@ app.use('/api/likesforpost',likesforpostroute)
 // app.use('/myanswers',myanswersroute);
 // app.use('/myposts',mypostsroute);
 
-server.listen(port,()=>{
-    console.log(`server started at http://localhost:${port}`);
-})
+app.listen(port,()=>{
+ })
