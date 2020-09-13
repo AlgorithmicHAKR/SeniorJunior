@@ -1,13 +1,17 @@
 const sequelize=require('sequelize');
 const { Sequelize } = require('sequelize');
 let db;
+if(process.env.DATABASE_URL){
+    db=new Sequelize(process.env.DATABASE_URL);
+}else{
 
-db=new sequelize({
-    dialect:"mysql",
-    database:"sjdatabase",
-    username:"sjuser",
-    password:"sjuser"
-});
+    db=new sequelize({
+        dialect:"mysql",
+        database:"sjdatabase",
+        username:"sjuser",
+        password:"sjuser"
+    });
+}
 
 let user=db.define("user",{
     id:{
