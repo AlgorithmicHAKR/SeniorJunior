@@ -1,64 +1,48 @@
 $(()=>{
-    let alldoubts=$('#alldoubts');
-    $.get('../api/user',{username:username}).then(user=>{
-        if(user.year===2){
-            //questionsroute me 1styearquestions, 2ndyearquestions,3rd and 4th yearquestions database hoga
-            //its not necessary to create seperate routes  for everything
-            //here we will send year in the query parameter to fetch that year's all questions
-            //but we will display only those questions which have likes-dislikes>=10
-                $.get("../api/allquestionsroute",{where:{year:[1]}}).then(allquestions=>{
+  let alldoubts=$('#alldoubts');
+    $.get('../api/login',{username:localStorage.getItem('username'),token:localStorage.getItem('token')}).then(user=>{
+        for(let i=user.year+1;i<=2020;i++){
+       //  window.alert(localStorage.getItem('token'))
+            $.get("../api/question/allquestions",{year:i,token:localStorage.getItem('token')}).then(allquestions=>{
                 allquestions.map((question)=>{
-                    if(question.likes-question.dislikes>=10){
-                        alldoubts.add(
-                            `<div class="card" style="width: 18rem;">
-                         <div class="card-body">
-                          <h5 class="card-title">${question.topic}</h5>
-                          <p class="card-text">${question.desc}</p>
-                          <button  type="button" onclick="gotodetails()">Details</button>
-                          <a href="./doubtindetail" class="btn btn-primary">Detail</a>
-                        </div>
-                      </div>`)
+                  // window.alert(author.username);
+                  if(question.likes-question.dislikes>=10){
+                        $.get("../api/login/withid",{id:question.userId,token:localStorage.getItem('token')})
+                        .then(author=>{
+                          alldoubts.prepend(
+                              `<div class="card shadow p-3 mb-5  rounded border border-primary" style="width:80%;margin-bottom:2rem;margin-left:10%;
+                              ">
+                              <div class="card-body">
+                                <h5 class="card-title  text-center "  style="font-size:2rem; ">${question.topic}</h5>
+                                <h6 class="card-subtitle mb-2 text-muted" >By ${author.username}</h6>
+                                <p class="card-text" >${question.desc}</p>
+                                <button type="button" class="btn btn-primary btn-sm" id=${question.id}>Detail</button>
+                              </div>
+                              </div>`
+                            
+                                              )
+          
+                        })
+                        .then(()=>{    $('.btn').click(
+                          function(e){
+                          let id=e.target.id;
+                          console.log("IHIHIHIH")
+                          localStorage.setItem('questionid',id);
+                         window.location.replace('http://localhost:4343/doubtindetail.html');
+                      });
+                  })
+                        
                     }
                 })
             })
-        }else if(user.year=2){
-            $.get("../api/questionsroute",{year:2}).then(secondyearquestions=>{
-                secondyearquestions.map((question)=>{
-                    if(question.likes-question.dislikes>=10){
-                        alldoubts.add(
-                            `<div class="card" style="width: 18rem;">
-                         <div class="card-body">
-                          <h5 class="card-title">${question.topic}</h5>
-                          <p class="card-text">${question.desc}</p>
-                          <button  type="button" onclick="gotodetails()">Details</button>
-                        </div>
-                      </div>`)
-                    }
-                })
-            })
+            .then(()=>{    $('.button').click(
+                function(e){
+                let id=e.target.id;
+            //    window.alert("HURRAh");
+                localStorage.setItem('questionid',id);
+                window.location.replace('http://localhost:4343/doubtindetail.html');});
+        })
         }
-        if(user.year>3){
-            $.get("../api/questionsroute",{year:3}).then(thirdyearquestions=>{
-                thirdyearquestions.map((question)=>{
-                    if(question.likes-question.dislikes>=10){
-                        alldoubts.add(
-                            `<div class="card" style="width: 18rem;">
-                         <div class="card-body">
-                          <h5 class="card-title">${question.topic}</h5>
-                          <p class="card-text">${question.desc}</p>
-                          <button  type="button" onclick="gotodetails(${question})">Details</button>
-                        </div>
-                      </div>`)
-                    }
-                })
-            })
-        }
+       
     })
-    //still have doubt on how do I take the questionid to doubtindetail page 
-    //because localstorage is I think not safe, the user can change the value in localstorage
-    gotodetails=function(question){
-        localStorage.setItem('questionid',question.id);
-        localStorage.setItem('questionofthisyearstudent',question.year);
-        window.location.replace("./doubtindetail.html");
-    }
 })
