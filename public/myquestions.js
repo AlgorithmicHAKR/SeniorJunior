@@ -1,5 +1,5 @@
 $(()=>{
-    $.get('http://localhost:4343/api/question/questionsofoneuser',{username:localStorage.getItem('username'),token:localStorage.getItem('token')})
+    $.get('../api/question/questionsofoneuser',{username:localStorage.getItem('username'),token:localStorage.getItem('token')})
     // .then(allqs=>{ 
         // allqs.json()})
         .then(allqs=>{
@@ -25,6 +25,6 @@ $(()=>{
         let id=e.target.id;
       //  window.alert(id);
         localStorage.setItem('questionid',id);
-        window.location.replace('http://localhost:4343/doubtindetail.html');});
+        window.location.replace('./doubtindetail.html');});
 })
 })

@@ -6,7 +6,7 @@ $(()=>{
     socket.on('notify',(data)=>{
         const{sentby,questionid}=data;
      //   window.alert(sentby+" "+questionid);
-        $.post('http://localhost:4343/api/notification',{sentby:sentby,questionid:questionid,username:localStorage.getItem('username'),
+        $.post('../api/notification',{sentby:sentby,questionid:questionid,username:localStorage.getItem('username'),
           token:localStorage.getItem('token') 
            }).then(()=>{
                console.log("HIHIHIHIHIHIHIHIHIHIH");
@@ -21,7 +21,7 @@ $(()=>{
                    $.post('./api/notification/seen',{id:id,token:localStorage.getItem('token')})
                    .then(()=>{
                        localStorage.setItem('questionid',id);
-                       window.location.replace('http://localhost:4343/doubtindetail.html');});
+                       window.location.replace('./doubtindetail.html');});
                    })
                })
            })
@@ -47,7 +47,7 @@ $(()=>{
             $.post('./api/notification/seen',{id:id,token:localStorage.getItem('token')})
             .then(()=>{
                 localStorage.setItem('questionid',id);
-                window.location.replace('http://localhost:4343/doubtindetail.html');});
+                window.location.replace('./doubtindetail.html');});
             })
         })
     let alldoubts=$('#alldoubts')
@@ -79,7 +79,7 @@ $(()=>{
                 let id=e.target.id;
                 console.log("IHIHIHIH")
                 localStorage.setItem('questionid',id);
-               window.location.replace('http://localhost:4343/doubtindetail.html');
+               window.location.replace('./doubtindetail.html');
             });
         })
               

@@ -1,5 +1,5 @@
 $(()=>{
-    $.get('http://localhost:4343/api/answer/allanswers',{username:localStorage.getItem('username')})
+    $.get('../api/answer/allanswers',{username:localStorage.getItem('username')})
     .then(allans=>allans.json()).then(allans=>{
         allans.map((answer)=>{
             $('#allanswers').empty()

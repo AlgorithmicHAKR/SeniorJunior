@@ -3,7 +3,7 @@ $(()=>{
     let username=$('#username').val()
     let password=$("#password").val()
       console.log(username+" "+password);
-       $.post('http://localhost:4343/api/login/login',{ username:username,password:password}).
+       $.post('../api/login/login',{ username:username,password:password}).
      //   then(token=>token.text).
        then(token=>{
            if(token){

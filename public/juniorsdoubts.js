@@ -28,7 +28,7 @@ $(()=>{
                           let id=e.target.id;
                           console.log("IHIHIHIH")
                           localStorage.setItem('questionid',id);
-                         window.location.replace('http://localhost:4343/doubtindetail.html');
+                         window.location.replace('./doubtindetail.html');
                       });
                   })
                         
@@ -40,7 +40,7 @@ $(()=>{
                 let id=e.target.id;
             //    window.alert("HURRAh");
                 localStorage.setItem('questionid',id);
-                window.location.replace('http://localhost:4343/doubtindetail.html');});
+                window.location.replace('./doubtindetail.html');});
         })
         }
        
