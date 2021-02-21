@@ -1,0 +1,14 @@
+.container{
+    /* display:inline; */
+    width: 100px;
+    height:100px;
+    background-color:red;
+    border:10px;
+}
+.item{
+    /* display:inline; */
+    width: 10px;
+    height:10px;
+    border:20px;
+    background-color:green
+}

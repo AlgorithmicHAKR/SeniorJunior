@@ -1,4 +1,7 @@
 $(()=>{
+   if(localStorage.getItem('username')==undefined){
+      window.location.replace("./blank.html")
+  }
    // import io from 'socket.io-client';
    let socket=io()
     let id=localStorage.getItem('questionid')

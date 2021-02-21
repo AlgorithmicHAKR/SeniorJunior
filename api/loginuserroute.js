@@ -43,11 +43,10 @@ route.post('/login',(req,res)=>{
                  res.send("username exist");        
             }else{
                 user.create({username:req.body.username,password:req.body.password,year:req.body.year,points:50}).then((user1)=>res.send(user1));
-                res.send(user);
+                res.send("user");
             }
         }
             )
-            
     })
     module.exports={
         route

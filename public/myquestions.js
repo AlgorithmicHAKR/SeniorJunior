@@ -1,4 +1,7 @@
 $(()=>{
+  if(localStorage.getItem('username')==undefined){
+    window.location.replace("./blank.html")
+}
     $.get('../api/question/questionsofoneuser',{username:localStorage.getItem('username'),token:localStorage.getItem('token')})
     // .then(allqs=>{ 
         // allqs.json()})

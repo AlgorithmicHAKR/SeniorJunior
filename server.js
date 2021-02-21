@@ -12,16 +12,14 @@ const server=http.createServer(app);
 const io=socketio(server);
 
 io.on('connection',(socket)=>{
-    console.log('HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH')
     socket.on('joinwebsite',(data)=>{
         const {username}=data;
         socket.join(username)
         
-    })
+    });
     socket.on('message',(data)=>{
         const{touser,sentby,questionid}=data
-        console.log('IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII'+touser+" "+sentby);
-        io.to(touser).emit('notify',{questionid:questionid,sentby:sentby})
+      io.to(touser).emit('notify',{questionid:questionid,sentby:sentby})
 
     })
 })
@@ -41,5 +39,6 @@ app.use('/api/likesforpost',likesforpostroute)
 // app.use('/myanswers',myanswersroute);
 // app.use('/myposts',mypostsroute);
 
-server.listen(process.env.PORT||4343,()=>{
+app.listen(process.env.PORT||4444,()=>{
+    
  })

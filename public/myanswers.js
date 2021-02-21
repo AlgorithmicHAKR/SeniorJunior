@@ -1,4 +1,7 @@
 $(()=>{
+    if(localStorage.getItem('username')==undefined){
+        window.location.replace("./blank.html")
+    }
     $.get('../api/answer/allanswers',{username:localStorage.getItem('username')})
     .then(allans=>allans.json()).then(allans=>{
         allans.map((answer)=>{

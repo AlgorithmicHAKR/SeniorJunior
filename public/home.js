@@ -1,4 +1,7 @@
 $(()=>{
+    if(localStorage.getItem('username')==undefined){
+        window.location.replace("./blank.html")
+    }
     // import io from 'socket.io-client';
     let socket=io()
     console.log(socket);
@@ -89,4 +92,11 @@ $(()=>{
     })
    })
 
+$('#logout').click(()=>{
+    console.log("HI")
+    localStorage.removeItem('token')
+    localStorage.removeItem('username')
+    window.replace.href="./index.html"
 })
+}
+)

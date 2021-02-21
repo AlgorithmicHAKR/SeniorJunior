@@ -1,4 +1,7 @@
 $(()=>{
+ 
+  if(localStorage.getItem('username')!=undefined) localStorage.removeItem('username')
+  if(localStorage.getItem('token')!=undefined) localStorage.removeItem('token')
    $("#submit").click(()=>{
     let username=$('#username').val()
     let password=$("#password").val()

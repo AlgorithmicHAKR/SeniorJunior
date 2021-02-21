@@ -1,4 +1,7 @@
 $(()=>{
+  if(localStorage.getItem('username')==undefined){
+    window.location.replace("./blank.html")
+}
   let alldoubts=$('#alldoubts');
     $.get('../api/login',{username:localStorage.getItem('username'),token:localStorage.getItem('token')}).then(user=>{
         for(let i=user.year+1;i<=2020;i++){
